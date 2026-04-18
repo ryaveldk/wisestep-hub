@@ -18,11 +18,24 @@ Første tour er *Kierkegaards København*. Hvis det virker, bliver det til en pl
 
 - **Faserne** er vores masterplan. Hver fase rummer beslutninger (🔒 blokerende eller 🔄 løbende) og en sektion med advarsler og faldgruber.
 - **Beslutninger** får hver især et kort hvor vi begge kan stemme *Accept*, *Afvis* eller *Diskutér* med en valgfri note. En beslutning bliver først markeret som godkendt når vi begge har sagt ja.
-- **Kommentarer** kan tilføjes på hver sektion — klik på det lille ikon i margin når du hover'er over en overskrift.
+- **Kommentarer** kan tilføjes på hver sektion — klik på det lille ikon i margin når du hover'er over en overskrift. Kommentarer opdaterer i realtid.
 
 ## Status
 
-Vi er i **Fase 0 — Strategiske fundamenter**. De syv første blokerende beslutninger ligger klar til afstemning på [Beslutninger](beslutninger.html)-siden.
+**Fase 0 — Strategiske fundamenter** er aktiv. De syv første blokerende beslutninger er seedet og venter på stemmer på [Beslutninger](beslutninger.html)-siden.
+
+**Næste mikroskridt:**
+
+1. Tag de syv blokerende beslutninger i Fase 0 og Fase 1 — mest kritisk: virksomhedsstruktur, Apple Developer enrollment, og paraply-brand-navn (de tre hænger sammen).
+2. Book en IP-advokat-konsultation om AI-stemme-rettigheder og Kierkegaard-efterligning (Fase 2).
+3. Udkast til dramaturgisk skelet for en tour (Fase 3) — kan laves parallelt med det juridiske.
+
+## Infrastruktur
+
+- **Live**: [ryaveldk.github.io/wisestep-hub](https://ryaveldk.github.io/wisestep-hub/)
+- **Deploy**: push til `main` → GitHub Pages rebuilder `docs/` automatisk (~1–2 min).
+- **Backend**: Supabase (auth via Google, tre tabeller med RLS, realtime på kommentarer og stemmer).
+- **Adgang**: pt. åbent for enhver authenticated Google-konto; whitelist-policies ligger klar til aktivering i repo'ets `README.md` så snart partners mail er kendt.
 
 ## Faser
 

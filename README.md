@@ -1,129 +1,210 @@
 # Wisestep Hub
 
-Privat samarbejds-hub for Wisestep-projektet — det levende dokument for vores iOS-app *Kierkegaards København*.
+Privat samarbejds-hub for Wisestep-projektet — det levende dokument for vores iOS-app, første produkt *Kierkegaards København*.
 
-- **Indhold**: markdown i `/content/` bygges til statisk HTML i `/docs/`
-- **Hosting**: GitHub Pages fra `/docs/` på `main`
-- **Backend**: Supabase (auth + decisions + comments)
-- **Frontend**: vanilla HTML/CSS/JS — ingen React, ingen build-tools ud over ét Node-script
-
-**Live-URL** (når deploy er aktiveret):
-https://ryaveldk.github.io/wisestep-hub
+**Live**: https://ryaveldk.github.io/wisestep-hub/
+**Repo**: https://github.com/ryaveldk/wisestep-hub (privat)
+**Supabase**: https://supabase.com/dashboard/project/mfrdpvnhbdankggvkycg
 
 ---
 
-## Setup
+## Status (pr. 2026-04-18)
 
-Kræver Node 20+ og npm.
+✅ **Hub'en kører**. Du er logget ind via Google, siderne loader, kommentarer gemmes i realtid, beslutnings-kort tager imod stemmer.
+
+Hvad der er på plads:
+
+| Område               | Status | Noter                                                                 |
+|----------------------|--------|-----------------------------------------------------------------------|
+| GitHub Pages deploy  | ✅      | Fra `main/docs/`, auto-deploy 1–2 min efter push                      |
+| Google OAuth login   | ✅      | PKCE-flow via Supabase, session persisteres i localStorage            |
+| Supabase tabeller    | ✅      | `decisions`, `decision_votes`, `comments` oprettet                     |
+| RLS-policies         | ⚠️      | Åbent for alle authenticated. **Bør lukkes til whitelist** (se nedenfor) |
+| Realtime subscriptions| ✅      | Kommentarer og afstemninger opdaterer live på tværs af browsere       |
+| Seed-beslutninger    | ✅      | 7 blokerende beslutninger er indsat                                    |
+| Partner-invitation   | ❌      | Whitelist-mail mangler i RLS (spørg partner, opdatér SQL nedenfor)    |
+| Tour-manuskripter    | ❌      | Placeholder — afventer Fase 3-beslutninger                             |
+
+---
+
+## Sådan arbejder vi fremover
+
+### Daglig rytme
+1. Redigér markdown i `/content/**/*.md` — det er den eneste kilde til sandhed for alt indhold.
+2. `npm run build` — genererer HTML i `/docs/`.
+3. `npm run dev` (valgfrit) — server på localhost:8000 så du kan se ændringer før commit.
+4. `git add -A && git commit -m "..." && git push` — Pages deployer automatisk.
+
+> **Husk**: `docs/` skal commit'es sammen med `content/`. Glemmer du build, er live-siden ikke opdateret.
+
+### Beslutninger
+- Blokerende beslutninger diskuteres direkte på [beslutninger-siden](https://ryaveldk.github.io/wisestep-hub/beslutninger.html). Begge stemmer → status flytter sig.
+- Nye beslutninger tilføjes enten via SQL eller ved at udvide `scripts/seed-decisions.mjs` og køre det igen (idempotent).
+
+### Kommentarer
+- Hvert `## h2`-afsnit kan kommenteres — klik det lille 💬-ikon der viser sig ved hover.
+- Opløs færdigdiskuterede tråde med "Marker løst".
+
+---
+
+## Setup (første gang på en ny maskine)
 
 ```bash
-git clone git@github.com:ryaveldk/wisestep-hub.git
+git clone https://github.com/ryaveldk/wisestep-hub.git
 cd wisestep-hub
 npm install
 npm run build
-npm run dev      # serverer docs/ på http://localhost:8000
+npm run dev   # http://localhost:8000
 ```
 
-## Daglig workflow
+Kræver Node 20+.
 
-1. Redigér markdown i `/content/**/*.md`.
-2. Kør `npm run build` — det genererer HTML i `/docs/`.
-3. Kør `npm run dev` for at tjekke lokalt.
-4. `git add content/ docs/ && git commit -m "..." && git push`.
-5. GitHub Pages deployer automatisk fra `main/docs/` inden for 1-2 minutter.
+---
 
-> **Husk**: `docs/` skal committes sammen med `content/`. Vi bruger ikke `gh-pages`-branch, vi server direkte fra `main/docs/`. Hvis du glemmer at køre build får live-siden ikke dine ændringer.
+## Projektstruktur
 
-## Tilføje en ny side
+```
+content/                   # markdown-kilder — det levende dokument
+  index.md                 # forside
+  faser/                   # 9 fase-dokumenter (00 → 08)
+  beslutninger.md          # liste-side med dynamiske kort
+  manuskripter/            # tour-manuskripter (placeholder)
+docs/                      # build-output — SERVERES AF GITHUB PAGES
+  index.html, faser/*.html, …
+  css/style.css
+  js/
+    config.js              # Supabase URL + anon key (OK at committe)
+    supabase.js            # client-init + helpers
+    auth.js                # Google-login + session
+    comments.js            # inline kommentarer + realtime
+    decisions.js           # beslutnings-kort + voting
+    app.js                 # entry point
+scripts/
+  build.mjs                # markdown → HTML
+  seed-decisions.mjs       # seeder beslutninger (kræver service-role key)
+package.json
+README.md
+```
 
-1. Opret `content/min-side.md` (eller `content/faser/xx-navn.md`).
-2. Tilføj frontmatter:
+---
+
+## Opgaver man ofte løber ind i
+
+### Tilføje en ny side
+
+1. Opret `content/min-side.md` (eller under `content/faser/`):
    ```md
    ---
    title: Min side
    ---
 
    # Min side
-   ...
+   Brødtekst…
    ```
-3. Tilføj sidens link i `NAV_STRUCTURE` i `scripts/build.mjs`.
-4. Kør `npm run build`.
+2. Tilføj sidens link i `NAV_STRUCTURE` i `scripts/build.mjs`.
+3. `npm run build && git add -A && git commit -m "add: min side" && git push`.
 
-## Tilføje en ny beslutning
+### Tilføje en ny beslutning
 
-**Via Supabase SQL editor:**
-
+**Via Supabase SQL Editor** (hurtigst til ad-hoc):
 ```sql
 insert into decisions (slug, title, phase, description, blocking)
 values ('min-slug', 'Min beslutning', 'Fase X', 'Beskrivelse…', true);
 ```
 
-Eller tilføj objektet i `DECISIONS`-arrayet i `scripts/seed-decisions.mjs` og kør scriptet igen (det er idempotent — upsert på slug).
+**Via seed-script** (hvis du vil have den versioneret):
+Tilføj objektet i `DECISIONS`-arrayet i `scripts/seed-decisions.mjs` og kør scriptet igen (idempotent upsert på slug).
 
-## Seed initial beslutninger
-
-Første gang (eller når du har tilføjet nye):
+### Seede / re-seede beslutninger
 
 ```bash
 # Hent service-role key fra:
-#   Supabase Dashboard → Project Settings → API → service_role (secret)
-# Denne key må ALDRIG committes. .gitignore dækker de mest oplagte filnavne.
-
-SUPABASE_SERVICE_KEY=eyJ...service-role-key... npm run seed
+# https://supabase.com/dashboard/project/mfrdpvnhbdankggvkycg/settings/api-keys
+# Felt: "service_role" (markeret "secret", tryk Reveal). MÅ ALDRIG committes.
+SUPABASE_SERVICE_KEY='eyJ...' npm run seed
 ```
 
-Scriptet upserter på `slug`, så det er sikkert at køre flere gange.
+### Låse adgang til whitelist (TODO)
 
-## Låse adgang til kun jer to
-
-Row Level Security (RLS) er slået til på alle tre tabeller. Erstat RLS-policies med email-whitelist når du kender din partners e-mail:
+RLS-policies er pt. `to authenticated using (true)` — dvs. enhver Google-konto der logger ind kan læse/skrive. Når partners mail er kendt, kør følgende i **Supabase Dashboard → SQL Editor**:
 
 ```sql
--- Kør i Supabase SQL editor, erstat med faktiske mails.
+-- Erstat med faktiske mails.
 create or replace function public.is_allowed_user() returns boolean
 language sql stable
 as $$
-  select auth.jwt()->>'email' in ('ryanvelin2@gmail.com', 'partner@example.com');
+  select coalesce(auth.jwt()->>'email', '') in (
+    'ryanvelin2@gmail.com',
+    'partner@example.com'
+  );
 $$;
 
--- Drop eksisterende policies og erstat med whitelist-versioner.
-drop policy if exists "read_all" on decisions;
-drop policy if exists "write_all" on decisions;
-create policy "whitelist_read"  on decisions for select using (public.is_allowed_user());
-create policy "whitelist_write" on decisions for all    using (public.is_allowed_user()) with check (public.is_allowed_user());
+-- Drop eksisterende policies og erstat med whitelist.
+drop policy if exists "auth_read"  on public.decisions;
+drop policy if exists "auth_write" on public.decisions;
+create policy "whitelist_read"  on public.decisions for select to authenticated using (public.is_allowed_user());
+create policy "whitelist_write" on public.decisions for all    to authenticated using (public.is_allowed_user()) with check (public.is_allowed_user());
 
-drop policy if exists "read_all" on decision_votes;
-drop policy if exists "write_all" on decision_votes;
-create policy "whitelist_read"  on decision_votes for select using (public.is_allowed_user());
-create policy "whitelist_write" on decision_votes for all    using (public.is_allowed_user()) with check (public.is_allowed_user());
+drop policy if exists "auth_read"  on public.decision_votes;
+drop policy if exists "auth_write" on public.decision_votes;
+create policy "whitelist_read"  on public.decision_votes for select to authenticated using (public.is_allowed_user());
+create policy "whitelist_write" on public.decision_votes for all    to authenticated using (public.is_allowed_user()) with check (public.is_allowed_user());
 
-drop policy if exists "read_all" on comments;
-drop policy if exists "write_all" on comments;
-create policy "whitelist_read"  on comments for select using (public.is_allowed_user());
-create policy "whitelist_write" on comments for all    using (public.is_allowed_user()) with check (public.is_allowed_user());
+drop policy if exists "auth_read"  on public.comments;
+drop policy if exists "auth_write" on public.comments;
+create policy "whitelist_read"  on public.comments for select to authenticated using (public.is_allowed_user());
+create policy "whitelist_write" on public.comments for all    to authenticated using (public.is_allowed_user()) with check (public.is_allowed_user());
 ```
 
-Derudover: i **Supabase Dashboard → Authentication → URL Configuration**, tilføj `https://ryaveldk.github.io/wisestep-hub/` som *Site URL* og som *Redirect URL*.
+### Invitere partner
 
-## Supabase dashboard
+1. Partner går til https://ryaveldk.github.io/wisestep-hub/ og logger ind med Google.
+2. Når de er logget ind første gang, er deres bruger oprettet i Supabase (`auth.users`). Du kan se dem i Dashboard → Authentication → Users.
+3. Opdatér `is_allowed_user()` med deres mail (se SQL ovenfor).
 
-https://supabase.com/dashboard/project/mfrdpvnhbdankggvkycg
+### Skifte deployment-URL (fx custom domæne)
 
-## Kode-struktur
+`docs/js/config.js` har en hardkodet `KNOWN_SITES`-liste. Tilføj den nye URL dér, og tilføj den også i Supabase Dashboard → Authentication → URL Configuration som både *Site URL* og *Redirect URL*.
 
-```
-content/           markdown-kilder
-docs/              build-output + statiske assets (GitHub Pages rod)
-  css/style.css
-  js/
-    config.js      Supabase URL + anon key (OK at committe)
-    supabase.js    client init + helpers
-    auth.js        Google-login + session
-    comments.js    inline comments
-    decisions.js   beslutnings-kort + voting
-    app.js         entry point
-scripts/
-  build.mjs        markdown → HTML
-  seed-decisions.mjs
-.github/workflows/deploy.yml
-```
+---
+
+## Troubleshooting
+
+### Login looper / ender på 404 på github.io-roden
+- Tjek at **Site URL** i Supabase er `https://ryaveldk.github.io/wisestep-hub/` (trailing slash).
+- Tjek at Redirect URLs indeholder `https://ryaveldk.github.io/wisestep-hub/**`.
+- Ryd browser-storage (DevTools → Application → Storage → Clear site data), hard-refresh.
+
+### Tabeller "not found" (PGRST205)
+- Sørg for SQL-create-scriptet er kørt i Supabase SQL Editor.
+- Kontrollér at `supabase_realtime` publication indeholder de tre tabeller.
+
+### Ændringer vises ikke på live-siden
+- Glemte du at køre `npm run build`?
+- `docs/` skal være committet og pushet.
+- Pages tager 1–2 min efter push. Tjek `gh run list --repo ryaveldk/wisestep-hub` hvis det tager længere.
+
+### "Log ind"-gaten forsvinder ikke efter login
+- Dette blev fikset i commit 91f38d7 (CSS-specificitet vandt over `[hidden]`-attribut). Hvis du ser det igen, inspicér elementet — `.login-gate[hidden]` skal have `display: none`.
+
+### Service-role key lækket til git
+- Skift key øjeblikkeligt i Supabase Dashboard → Settings → API → "Reset service_role key".
+- `.gitignore` dækker typiske filnavne (`service-role.key`, `supabase-service.key`, `.env*`), men key'en må aldrig ligge i committet fil overhovedet.
+
+---
+
+## Teknisk baggrund
+
+- **Vanilla stack** — ingen React, ingen bundler. Ét lille build-script, ESM-imports fra CDN til Supabase-klient.
+- **Markdown → HTML**: `marked` parser + gray-matter frontmatter. Post-processing tilføjer anker-IDs og kommentar-knapper til h2-overskrifter, og stylede badges til 🔒/🔄-markeringer.
+- **Auth**: Supabase håndterer PKCE-flow med Google. Session gemmes i localStorage. Live re-render ved auth-state-ændringer.
+- **Realtime**: én kanal per side for kommentarer (`comments:page_slug`) og én global for beslutninger. Filter på `page_slug` begrænser trafikken.
+- **RLS**: tre tabeller, alle har RLS enabled. Pt. åbent for authenticated, bør strammes til whitelist.
+
+---
+
+## Kontakt / dashboards
+
+- **Supabase**: https://supabase.com/dashboard/project/mfrdpvnhbdankggvkycg
+- **GitHub repo**: https://github.com/ryaveldk/wisestep-hub
+- **Pages settings**: https://github.com/ryaveldk/wisestep-hub/settings/pages

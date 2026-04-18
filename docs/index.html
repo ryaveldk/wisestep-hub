@@ -41,13 +41,29 @@
 <ul>
 <li><strong>Faserne</strong> er vores masterplan. Hver fase rummer beslutninger (<span class="marker marker-blocking" title="Blokerende">🔒 blokerende</span> eller <span class="marker marker-ongoing" title="Løbende">🔄 løbende</span>) og en sektion med advarsler og faldgruber.</li>
 <li><strong>Beslutninger</strong> får hver især et kort hvor vi begge kan stemme <em>Accept</em>, <em>Afvis</em> eller <em>Diskutér</em> med en valgfri note. En beslutning bliver først markeret som godkendt når vi begge har sagt ja.</li>
-<li><strong>Kommentarer</strong> kan tilføjes på hver sektion — klik på det lille ikon i margin når du hover&#39;er over en overskrift.</li>
+<li><strong>Kommentarer</strong> kan tilføjes på hver sektion — klik på det lille ikon i margin når du hover&#39;er over en overskrift. Kommentarer opdaterer i realtid.</li>
 </ul>
 <h2 id="status" class="section-heading" data-section-id="status">
       <span class="heading-text">Status</span>
       <button class="comment-anchor" data-section-id="status" aria-label="Vis kommentarer">💬</button>
     </h2>
-<p>Vi er i <strong>Fase 0 — Strategiske fundamenter</strong>. De syv første blokerende beslutninger ligger klar til afstemning på <a href="beslutninger.html">Beslutninger</a>-siden.</p>
+<p><strong>Fase 0 — Strategiske fundamenter</strong> er aktiv. De syv første blokerende beslutninger er seedet og venter på stemmer på <a href="beslutninger.html">Beslutninger</a>-siden.</p>
+<p><strong>Næste mikroskridt:</strong></p>
+<ol>
+<li>Tag de syv blokerende beslutninger i Fase 0 og Fase 1 — mest kritisk: virksomhedsstruktur, Apple Developer enrollment, og paraply-brand-navn (de tre hænger sammen).</li>
+<li>Book en IP-advokat-konsultation om AI-stemme-rettigheder og Kierkegaard-efterligning (Fase 2).</li>
+<li>Udkast til dramaturgisk skelet for en tour (Fase 3) — kan laves parallelt med det juridiske.</li>
+</ol>
+<h2 id="infrastruktur" class="section-heading" data-section-id="infrastruktur">
+      <span class="heading-text">Infrastruktur</span>
+      <button class="comment-anchor" data-section-id="infrastruktur" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Live</strong>: <a href="https://ryaveldk.github.io/wisestep-hub/">ryaveldk.github.io/wisestep-hub</a></li>
+<li><strong>Deploy</strong>: push til <code>main</code> → GitHub Pages rebuilder <code>docs/</code> automatisk (~1–2 min).</li>
+<li><strong>Backend</strong>: Supabase (auth via Google, tre tabeller med RLS, realtime på kommentarer og stemmer).</li>
+<li><strong>Adgang</strong>: pt. åbent for enhver authenticated Google-konto; whitelist-policies ligger klar til aktivering i repo&#39;ets <code>README.md</code> så snart partners mail er kendt.</li>
+</ul>
 <h2 id="faser" class="section-heading" data-section-id="faser">
       <span class="heading-text">Faser</span>
       <button class="comment-anchor" data-section-id="faser" aria-label="Vis kommentarer">💬</button>
