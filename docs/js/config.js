@@ -5,21 +5,18 @@ export const SUPABASE_URL = 'https://mfrdpvnhbdankggvkycg.supabase.co';
 export const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRwdm5oYmRhbmtnZ3ZreWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0OTQyNzQsImV4cCI6MjA5MjA3MDI3NH0.x05zAdZ88j74rE6Y0CrXPCpkb3gbhIYjGBGXY4SbnzA';
 
-// Afleder hub-roden ud fra .brand-linket (peger altid på index.html i roden).
-// Det virker uanset om siden serveres på /wisestep-hub/, /, eller et custom domæne.
+// Kendte deployment-URLs. Runtime vælger den der matcher current origin/path.
+const KNOWN_SITES = [
+  'https://ryaveldk.github.io/wisestep-hub/',
+];
+
 export function getSiteBaseUrl() {
-  const brand = document.querySelector('a.brand');
-  if (brand) {
-    // href på <a> auto-resolveres til absolut URL af browseren.
-    const u = new URL(brand.href);
-    // Strip index.html hvis til stede → vi vil have mappe-roden.
-    const pathname = u.pathname.replace(/\/?index\.html?$/, '/');
-    return u.origin + pathname;
-  }
-  // Fallback: current page's folder
+  const here = window.location.origin + window.location.pathname;
+  const match = KNOWN_SITES.find((u) => here.startsWith(u.replace(/\/$/, '')));
+  if (match) return match;
+  // Lokal dev: brug current page's mappe.
   const { origin, pathname } = window.location;
-  const folder = pathname.replace(/[^/]*$/, '');
-  return origin + folder;
+  return origin + pathname.replace(/[^/]*$/, '');
 }
 
 export const SITE_URL = getSiteBaseUrl();
