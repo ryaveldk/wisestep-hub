@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 3 — Indhold — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/03-indhold">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li class="active"><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 3 — Indhold</span></nav>
+      <article class="prose">
+<h1>Fase 3 — Indhold</h1>
+<p>Det er her produktet faktisk bliver produktet. App&#39;en er transportmidlet; indholdet er det brugeren køber. En dårlig tur i en god app bliver ikke købt. En god tur i en OK app kan vinde alligevel. Denne fase kræver både dramaturgisk tæft og produktions-disciplin.</p>
+<h2 id="dramaturgisk-struktur" class="section-heading" data-section-id="dramaturgisk-struktur">
+      <span class="heading-text">Dramaturgisk struktur <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="dramaturgisk-struktur" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvordan er en Wisestep-tur bygget op? Forslag til fast skelet for alle ture:</p>
+<ol>
+<li><strong>Åbning</strong> (før første geofence): tonen sættes. Hvem er vi? Hvilken filosof møder du? Hvad skal du kigge efter?</li>
+<li><strong>Stop 1–5</strong>: dramatiserede scener, hvert stop har en tese og en tvist.</li>
+<li><strong>Transitioner</strong> mellem stop: lette, refleksive passages der knytter de fysiske bevægelser til det intellektuelle.</li>
+<li><strong>Stop 6 / afslutning</strong>: emotionel klimaks. Ikke nødvendigvis svar, men forløsning.</li>
+<li><strong>Epilog</strong>: hvem skrev, hvad læste de, hvorfor vælger vi at fortælle det.</li>
+</ol>
+<p>Struktur-beslutningen påvirker manuskript-længde, lyddesign og navigations-logik. Den skal låses tidligt.</p>
+<h2 id="dead-air" class="section-heading" data-section-id="dead-air">
+      <span class="heading-text">Dead air <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="dead-air" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvad sker der når brugeren går fra stop 3 til stop 4? Tre modeller:</p>
+<ul>
+<li><strong>Stilhed</strong>: autentisk, men brugeren er usikker på om app&#39;en virker.</li>
+<li><strong>Ambient lyddesign</strong>: byens lyde, musik, klavernoter — bevarer stemning, indikerer &quot;vi kører stadig&quot;.</li>
+<li><strong>Kontinuerlig fortæller-stemme</strong>: konstant selskab, risikerer at blive irriterende over 45 min.</li>
+</ul>
+<p><strong>Anbefaling: ambient lyddesign med lav volumen + kort voice cue når næste geofence er tæt på.</strong> &quot;Du nærmer dig Frue Plads — drej til venstre ved kirken.&quot;</p>
+<h2 id="fallback-states" class="section-heading" data-section-id="fallback-states">
+      <span class="heading-text">Fallback-states <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="fallback-states" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvad hvis brugeren går uden for geofence-radius? Hvad hvis de stopper midt i et stop for at tage et billede? Hvad hvis de går hele turen baglæns?</p>
+<p>Vi skal beslutte:</p>
+<ul>
+<li><strong>Genoptagelse</strong>: kan brugeren trykke &quot;fortsæt fra sidst&quot; næste dag?</li>
+<li><strong>Ude-af-zone-håndtering</strong>: pauser vi automatisk? Giver vi en rute-tilbage-kue?</li>
+<li><strong>Udenfor-by-håndtering</strong>: hvad hvis nogen køber turen fra Aarhus?</li>
+</ul>
+<h2 id="manuskript-laengde-per-stop" class="section-heading" data-section-id="manuskript-laengde-per-stop">
+      <span class="heading-text">Manuskript-længde per stop <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="manuskript-laengde-per-stop" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p><strong>Forslag: 3–5 minutter per stop.</strong> Kortere end et podcast-segment, længere end et museums-audio-guide. Nok til at dramatisere, kort nok til at brugeren ikke bliver rodfæstet.</p>
+<p>Total: 6 stop × 4 min + transitioner (8 × ~1,5 min) = ~36 min lyd. Lægger vi 9 min til åbning og epilog kommer vi til 45 min.</p>
+<h2 id="stemmeroller" class="section-heading" data-section-id="stemmeroller">
+      <span class="heading-text">Stemmeroller <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="stemmeroller" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvem er hvem? Minimumsbesætning:</p>
+<ul>
+<li><strong>Fortæller</strong> (vores voice-of-narrator, neutral, moden)</li>
+<li><strong>Kierkegaard</strong> (ung-voksen mand, øresundsk accent?, melankolsk-varm)</li>
+<li><strong>Regine Olsen</strong> (ung kvinde, lettere stemme)</li>
+</ul>
+<p>Udvidelse hvis budget tillader:</p>
+<ul>
+<li><strong>Brødre / venner / kritikere</strong> (2–3 støtte-stemmer)</li>
+<li><strong>Journal-stemme</strong> (Kierkegaard i whisper-mode, til dagbogs-citater)</li>
+</ul>
+<p>Beslutning: hvor mange unikke AI-stemmer indkøber/træner vi? Flere stemmer = højere produktionsomkostning + bedre dramaturgi.</p>
+<h2 id="manuskript-iteration" class="section-heading" data-section-id="manuskript-iteration">
+      <span class="heading-text">Manuskript-iteration <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="manuskript-iteration" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Proces:</p>
+<ol>
+<li><strong>Skitse</strong> (1 side per stop) — dramatiserer scene, sætter tese.</li>
+<li><strong>Fuldt manuskript</strong> (3–5 min per stop) — dialog, transitions, fakta-kontrol.</li>
+<li><strong>Læsning højt</strong> — fang upraktiske formuleringer (AI&#39;er snubler i lange bisætninger).</li>
+<li><strong>AI-syntese test</strong> — hør om stemmen fanger rytmen.</li>
+<li><strong>Fieldtest</strong> — én af os går turen, lytter, noterer.</li>
+<li><strong>Endelig version</strong>.</li>
+</ol>
+<p>Hvert stop tager anslået 8–15 timer manuskript + 2–4 timer AI-produktion + 1–2 timer lyddesign.</p>
+<h2 id="faktatjek" class="section-heading" data-section-id="faktatjek">
+      <span class="heading-text">Faktatjek <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="faktatjek" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Kierkegaards liv er godt dokumenteret, men anekdote-kvalitet varierer. Brug <em>Søren Kierkegaards Skrifter</em>-kommentarer, biografier af Joakim Garff og Kirmmse, samt Det Kgl. Bibliotek som primære kilder. <strong>Vi skal ikke digte fakta, men vi må gerne dramatisere hvad vi ved.</strong></p>
+<h2 id="lyddesign-pipeline" class="section-heading" data-section-id="lyddesign-pipeline">
+      <span class="heading-text">Lyddesign-pipeline <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="lyddesign-pipeline" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Værktøjskæde (forslag):</p>
+<ol>
+<li><strong>Manuskript</strong> → Google Docs eller Scrivener</li>
+<li><strong>AI-syntese</strong> → ElevenLabs (eller valgt leverandør)</li>
+<li><strong>DAW</strong> → Logic Pro eller Reaper, til mix, ambient layers, musik</li>
+<li><strong>Master</strong> → AU-plugins eller ekstern mastering-service</li>
+<li><strong>Format</strong> → M4A eller Opus, 64–96 kbps, mono</li>
+<li><strong>Tag / metadata</strong> → embedded chapter markers til geofence-cues</li>
+</ol>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>AI-udtale af danske navne</strong> er en kendt svaghed. &quot;Regine&quot; kan blive til &quot;rejn&quot; eller &quot;regeen&quot;. Brug leverandørens pronunciation-override-funktion hvis den findes, ellers fonetisk stavning i manuskript.</li>
+<li><strong>Manuskript-længde-drift</strong>: 3 min bliver let til 6 min når vi læser det højt. Stram op i revision.</li>
+<li><strong>Dead air-frustration</strong>: test med ikke-tekniske brugere. Hvis de siger &quot;gik der noget i stykker?&quot; når de går fra stop 2 til 3, har vi et problem.</li>
+<li><strong>Lyd-format</strong>: 128 kbps stereo lyder smukt men gør app-download 2× større. Ikke værd det.</li>
+<li><strong>Fakta-fejl</strong>: ét stop med én forkert årstal ender på Reddit. Factcheck dobbelt.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Beslutninger — Wisestep Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="beslutninger">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="faser/02-jura.html">2 — Jura</a></li><li><a href="faser/03-indhold.html">3 — Indhold</a></li><li><a href="faser/04-teknik.html">4 — Teknik</a></li><li><a href="faser/05-appstore.html">5 — App Store</a></li><li><a href="faser/06-test.html">6 — Test</a></li><li><a href="faser/07-lancering.html">7 — Lancering</a></li><li><a href="faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li class="active"><a href="beslutninger.html">Beslutninger</a></li><li><a href="manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Beslutninger</span><span class="crumb-sep">›</span><span aria-current="page">Beslutninger</span></nav>
+      <article class="prose">
+<h1>Beslutninger</h1>
+<p>Alle beslutninger lever her. Hver beslutning har en status — <strong>Afventer</strong>, <strong>Ryan OK</strong>, <strong>Partner OK</strong>, <strong>Godkendt</strong> eller <strong>Afvist</strong> — og kræver stemmer fra os begge før den flytter sig. Bruger noten-feltet når I vælger <em>Diskutér</em> for at forklare hvorfor.</p>
+<p>Listen trækkes automatisk fra Supabase. Hvis den er tom, så kør <code>node scripts/seed-decisions.mjs</code> lokalt (kræver service-role nøgle).</p>
+<div id="decisions-list" data-mode="all">
+  <p class="muted">Indlæser beslutninger…</p>
+</div>
+
+<h2 id="sadan-laeser-du-et-beslutnings-kort" class="section-heading" data-section-id="sadan-laeser-du-et-beslutnings-kort">
+      <span class="heading-text">Sådan læser du et beslutnings-kort</span>
+      <button class="comment-anchor" data-section-id="sadan-laeser-du-et-beslutnings-kort" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Fase-tag</strong> fortæller hvor i vores plan beslutningen hører til.</li>
+<li><strong><span class="marker marker-blocking" title="Blokerende">🔒 blokerende</span></strong> betyder at vi ikke kan komme videre i den fase før beslutningen er taget.</li>
+<li><strong>Stemmerne</strong> vises nederst. Vi kan altid ændre vores stemme ved at klikke igen.</li>
+<li>Når vi <strong>begge</strong> stemmer <em>Accept</em>, flytter status automatisk til <strong>Godkendt</strong>. Ét <em>Afvis</em> flytter den til <strong>Afvist</strong>. Blandede stemmer giver <strong>Diskutér</strong>.</li>
+</ul>
+<h2 id="sadan-tilfojer-du-en-ny-beslutning" class="section-heading" data-section-id="sadan-tilfojer-du-en-ny-beslutning">
+      <span class="heading-text">Sådan tilføjer du en ny beslutning</span>
+      <button class="comment-anchor" data-section-id="sadan-tilfojer-du-en-ny-beslutning" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Indtil vi bygger en UI til det, sker det direkte i Supabase:</p>
+<pre><code class="language-sql">insert into decisions (slug, title, phase, description, blocking)
+values (&#39;min-slug&#39;, &#39;Min beslutning&#39;, &#39;Fase X&#39;, &#39;Beskrivelse...&#39;, true);
+</code></pre>
+<p>Eller udvid <code>scripts/seed-decisions.mjs</code> og kør den igen (den er idempotent — upsert på slug).</p>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

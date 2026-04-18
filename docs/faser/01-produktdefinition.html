@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 1 — Produktdefinition — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/01-produktdefinition">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li class="active"><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 1 — Produktdefinition</span></nav>
+      <article class="prose">
+<h1>Fase 1 — Produktdefinition</h1>
+<p>Her definerer vi præcis hvad MVP&#39;en ér — og lige så vigtigt, hvad den <em>ikke</em> er. Produktdefinitionen er en øvelse i disciplin: jo mindre vi forpligter os til ved launch, jo hurtigere kommer vi ud, og jo hurtigere lærer vi om det vi faktisk har bygget virker.</p>
+<h2 id="mvp-omfang" class="section-heading" data-section-id="mvp-omfang">
+      <span class="heading-text">MVP-omfang <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="mvp-omfang" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p><strong>Beslutning: én tour ved launch.</strong> <em>Kierkegaards København</em>, 45 minutter, 6 stop, startende ved Nytorv, sluttende ved Assistens Kirkegård.</p>
+<p>Begrundelse: én tour tvinger os til at få dramaturgien, lydproduktionen og den tekniske pipeline rigtig i lille skala. Anden tour bliver 3× hurtigere fordi vi har pipeline på plads. Ved launch af fx fem ture samtidig risikerer vi at komme ud med en halvsløj første tur som skygger for de bedre.</p>
+<h2 id="sprog-ved-launch" class="section-heading" data-section-id="sprog-ved-launch">
+      <span class="heading-text">Sprog ved launch <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="sprog-ved-launch" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Dansk eller engelsk først? Tre argumenter for dansk:</p>
+<ol>
+<li>Kierkegaard læses på dansk af danske brugere. Stemmen og kulturen hænger sammen.</li>
+<li>Dansk målgruppe i København er let at nå — lokale medier, byvandringer, biblioteker.</li>
+<li>Produktionen er enklere med ét sprog.</li>
+</ol>
+<p>Tre argumenter for engelsk:</p>
+<ol>
+<li>Turister er den primære målgruppe for city walks, og de fleste læser engelsk.</li>
+<li>Verdensmarked potentialet er større.</li>
+<li>Kierkegaards internationale renommé.</li>
+</ol>
+<p>Anbefaling: <strong>dansk ved launch, engelsk version klar inden for 8 uger efter.</strong> Det giver os en reel MVP-læring først, og så bygger vi engelsk oven på det der virker.</p>
+<h2 id="gruppelytning-mvp-eller-v1-1" class="section-heading" data-section-id="gruppelytning-mvp-eller-v1-1">
+      <span class="heading-text">Gruppelytning: MVP eller v1.1 <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="gruppelytning-mvp-eller-v1-1" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Skal flere brugere kunne gå turen samtidig og høre lyden synkront? Det er en killer-feature for par, venner og skoleklasser. Men det kræver en del teknisk infrastruktur: enten via peer-to-peer (Multipeer Connectivity) eller via en backend der synkroniserer playback-state.</p>
+<p><strong>Anbefaling: v1.1, ikke MVP.</strong> Det reducerer MVP-kompleksiteten markant. Gruppelytning er noget vi kan sælge som &quot;kommer snart&quot; og teste efterspørgsel på inden vi bygger. Mest sandsynligt er det en niche-feature der ikke skaber så meget konvertering som vi tror.</p>
+<h2 id="offline-vs-streaming" class="section-heading" data-section-id="offline-vs-streaming">
+      <span class="heading-text">Offline vs streaming <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="offline-vs-streaming" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Lyden er stor — 45 min + fallback-states = 80–150 MB per tour, højere ved høj kvalitet. To modeller:</p>
+<ul>
+<li><strong>Streaming</strong>: mindre app-download, afhængig af 4G/5G. Risiko: dårlig dækning i kældergange, broer, midt i byparken.</li>
+<li><strong>Offline (download på forhånd)</strong>: større initial download, ingen netværks-afhængighed undervejs. Bedre brugeroplevelse, men kræver tydelig onboarding om &quot;download først&quot;.</li>
+</ul>
+<p><strong>Anbefaling: offline-first, med download-flow som første step efter køb.</strong> Ingen bruger skal opdage midt i en tour at forbindelsen dropper på Nørrebrogade. Download kan ske over Wi-Fi før man går ud.</p>
+<h2 id="sekundaere-features" class="section-heading" data-section-id="sekundaere-features">
+      <span class="heading-text">Sekundære features <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="sekundaere-features" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Løbende overvejelser som ikke behøver låses i fase 1:</p>
+<ul>
+<li><strong>Bogmærker</strong> / gemme favorit-stop til senere</li>
+<li><strong>Transcription-view</strong> (læs lyden hvis du ikke kan høre)</li>
+<li><strong>Apple Watch-companion</strong> (næste stop på uret)</li>
+<li><strong>CarPlay / AirPods spatial audio</strong></li>
+<li><strong>Social deling</strong> (Instagram-kort fra turen)</li>
+</ul>
+<p>Diskussionen er hvad der tilføjer mest til oplevelsen uden at sprede os. Transcription har tilgængeligheds-gevinst. Bogmærker er billigt. Watch og CarPlay er aspirations.</p>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Multipeer Connectivity</strong> er kompleks. Hver gang jeg har set apps bruge det til synkront playback, har der været edge cases omkring midlertidig disconnect, auto-reconnect og &quot;hvem er hostnen&quot;. Undervurder det ikke — det er derfor det er skubbet til v1.1.</li>
+<li><strong>Offline download</strong> kræver plads. Sørg for at onboardingen fortæller brugeren om størrelsen <em>før</em> de betaler, ikke efter. App Review har slået ned på lignende apps for ikke at være tydelige nok.</li>
+<li><strong>Dansk-først</strong> betyder at vores første App Store-kategori-performance bliver smal. Lav planen for engelsk-lancering allerede i fase 1, så vi ikke bruger 6 måneder på at &quot;overveje&quot; det.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

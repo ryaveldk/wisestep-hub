@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 5 — App Store — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/05-appstore">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li class="active"><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 5 — App Store</span></nav>
+      <article class="prose">
+<h1>Fase 5 — App Store</h1>
+<p>App Store er ikke bare en distributionskanal — det er et discovery-system, et review-filter og en marketing-overflade alt i ét. Hver beslutning her påvirker enten hvor vi rangerer i søgning, om vi bliver godkendt, eller hvor mange der konverterer fra listing til køb.</p>
+<h2 id="kategori" class="section-heading" data-section-id="kategori">
+      <span class="heading-text">Kategori <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="kategori" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Valget af primær kategori påvirker rangering, anbefalings-algoritmer og hvilke &quot;charts&quot; vi kan lande på.</p>
+<p>Kandidater:</p>
+<ul>
+<li><strong>Travel</strong> (by-turisme, guidebog-association) — stærk trafik, men stor konkurrence med Google Maps, Tripadvisor</li>
+<li><strong>Education</strong> — passer til intellektuelt indhold, mindre konkurrence</li>
+<li><strong>Entertainment</strong> — passer til drama/lyd-fortælling</li>
+<li><strong>Reference</strong> (bøger, opslag) — svag trafik</li>
+</ul>
+<p><strong>Anbefaling: Travel som primær, Education som sekundær.</strong> Travel giver trafik, Education giver os mulighed for at ranke i uddannelses-søgninger hvor vi konkurrerer mod færre apps.</p>
+<h2 id="navn-undertitel" class="section-heading" data-section-id="navn-undertitel">
+      <span class="heading-text">Navn + undertitel <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="navn-undertitel" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>App-navn: max 30 tegn. Undertitel: max 30 tegn. Begge er søgbare.</p>
+<p><strong>Paraply-navn-anbefaling</strong>: app&#39;en hedder <em>Wisestep</em> (eller det valgte brand), undertitel <em>&quot;Kierkegaards København&quot;</em>. Ved tour #2 ændrer vi undertitlen men beholder app-navnet.</p>
+<p>Det betyder at folk der søger &quot;Kierkegaard&quot; og &quot;København&quot; finder os via undertitlen, mens vi ikke låser os til én tur i navnet.</p>
+<p>Alternativ: <em>&quot;Wisestep: Kierkegaards København&quot;</em> som fuldt navn, <em>&quot;AI-drevne byvandringer&quot;</em> som undertitel. Mere markedsføring af konceptet, mindre specifik SEO.</p>
+<h2 id="keywords" class="section-heading" data-section-id="keywords">
+      <span class="heading-text">Keywords <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="keywords" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>100 tegn, komma-separeret (ikke mellemrum — komma stjæler tegn). Kandidater:</p>
+<p><code>kierkegaard,københavn,byvandring,audio,guide,filosofi,historie,rejse,tour,nørrebro,assistens,vandretur</code></p>
+<p>Undgå keywords der gentages i navn/undertitel — Apple indekserer dem alligevel. Test iterativt med App Store Connect&#39;s built-in search suggestions.</p>
+<h2 id="aldersgraense" class="section-heading" data-section-id="aldersgraense">
+      <span class="heading-text">Aldersgrænse <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="aldersgraense" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Ingen eksplicit vold, sex eller alkoholreferencer i Kierkegaards materiale — måske en 9+ eller 12+ rating. Tages via Apple&#39;s self-report questionnaire ved submission.</p>
+<h2 id="screenshots-og-preview-video" class="section-heading" data-section-id="screenshots-og-preview-video">
+      <span class="heading-text">Screenshots og preview video <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="screenshots-og-preview-video" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Krav:</p>
+<ul>
+<li><strong>Screenshots</strong>: 6.7&quot; (iPhone 15 Pro Max), mandatory. Anbefaling: 3–5 screenshots, første er den vigtigste.</li>
+<li><strong>Preview video</strong>: 15–30 sek, valgfrit men stærkt anbefalet. Øger konvertering 20–30% i vores kategori.</li>
+</ul>
+<p>Screenshot-ideer:</p>
+<ol>
+<li>Hero: &quot;En 45 min guidet audio-tour gennem Kierkegaards København&quot;</li>
+<li>Map-visning med rute og stop</li>
+<li>Stop-detalje med play-kontrol</li>
+<li>AI-stemme-disclosure + privacy-vægt</li>
+<li>Review/testimonial hvis vi har én</li>
+</ol>
+<p>Preview video: kort montage — by-billeder, app-shots, stemme-teaser. 25 sek.</p>
+<h2 id="beskrivelse" class="section-heading" data-section-id="beskrivelse">
+      <span class="heading-text">Beskrivelse <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="beskrivelse" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Max 4000 tegn, men kun de første ~170 vises før &quot;more&quot;-link. De første 170 tegn er <strong>kritiske</strong> — de skal sælge før klik.</p>
+<p>Udkast:</p>
+<blockquote>
+<p>Gå ind i Søren Kierkegaards København. En 45 minutters dramatiseret audio-tour gennem Indre By og Nørrebro — 6 stop, AI-stemmer, ægte filosofi. Vandr alene, lyt som var du der.</p>
+</blockquote>
+<p>Resten af beskrivelsen: 3–4 afsnit om oplevelsen, teknisk (offline, geofencing), credits, privacy/AI-disclosure.</p>
+<h2 id="review-notes-til-apple" class="section-heading" data-section-id="review-notes-til-apple">
+      <span class="heading-text">Review notes til Apple <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="review-notes-til-apple" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p><strong>Vigtigt.</strong> Apple review kan være drilsk med apps der bruger always-location + in-app purchases. Skriv review notes der:</p>
+<ul>
+<li>Forklarer geofencing-brugen i lægmands-sprog (&quot;app&#39;en låser en lyd op når brugeren nærmer sig et bestemt sted&quot;)</li>
+<li>Angiver test-credentials (hvis vi har en unlock-mekanisme for review-teamet — anbefales)</li>
+<li>Henviser til det eksakte sted reviewer skal teste (koordinater eller landmark)</li>
+<li><strong>Forklarer AI-stemme-disclosure</strong> eksplicit og linker til privatlivspolitik</li>
+</ul>
+<p>Gode review notes er forskellen på 24-timers-godkendelse og 2-ugers-rejection-tur.</p>
+<h2 id="permission-strings" class="section-heading" data-section-id="permission-strings">
+      <span class="heading-text">Permission strings <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="permission-strings" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hver permission kræver en <code>NSXxxUsageDescription</code> i <code>Info.plist</code>. Disse tekster vises til brugeren og er ofte det punkt Apple bider sig fast i.</p>
+<ul>
+<li><strong><code>NSLocationWhenInUseUsageDescription</code></strong>: &quot;Wisestep bruger din lokation til at afspille de rigtige fortællinger når du nærmer dig hvert stop på ruten.&quot;</li>
+<li><strong><code>NSLocationAlwaysAndWhenInUseUsageDescription</code></strong>: &quot;For at kunne afspille den rigtige fortælling når din telefon er i lommen eller i pause, har Wisestep brug for altid-lokation. Dine lokations-data forlader aldrig din telefon.&quot;</li>
+</ul>
+<p><strong>Aldrig: &quot;Vi har brug for lokation.&quot;</strong> Altid: &quot;Vi bruger lokation til X specifikt.&quot;</p>
+<h2 id="privacy-manifest" class="section-heading" data-section-id="privacy-manifest">
+      <span class="heading-text">Privacy manifest <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="privacy-manifest" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Fra iOS 17 kræver Apple <strong>privacy manifest</strong> (<code>PrivacyInfo.xcprivacy</code>) der deklarerer al data-indsamling, tredjeparts-SDKs og reasons for required reason APIs. Uden manifestet bliver app&#39;en ikke godkendt i 2026.</p>
+<p>Vores manifest-indgange:</p>
+<ul>
+<li>Location (coarse + fine, linked to app functionality, not linked to user)</li>
+<li>Purchase history (via StoreKit)</li>
+<li>Analytics (via TelemetryDeck — anonym)</li>
+</ul>
+<h2 id="lokalisering" class="section-heading" data-section-id="lokalisering">
+      <span class="heading-text">Lokalisering <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="lokalisering" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Ved dansk-launch skal App Store-listing også være på dansk (primær) og engelsk (sekundær, for turister der har dansk App Store region). Ved engelsk-launch tilføjer vi fransk, tysk, spansk som sekundære.</p>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Apple afviser apps</strong> der beder om &quot;Always&quot; location uden tydelig forklaring i runtime-prompt. Brug en <strong>pre-permission screen</strong> der forklarer hvorfor, før du trigger dialog.</li>
+<li><strong>In-app purchases skal være &quot;testable&quot;</strong> af Apple review. Hvis de ikke kan komme gennem checkout gratis, kontakter de dig — og det forsinker review i 1–2 uger.</li>
+<li><strong>AI-apps</strong> er et særligt hed område for Apple i 2025–2026. De er begyndt at bede om detaljeret info om AI-brugen. Vær klar med dokumentation.</li>
+<li><strong>App-navnet</strong> kan ikke indeholde trademark-termer. &quot;Kierkegaard&quot; er personnavn → check om der er varemærkebeskyttelse (der er sandsynligvis ikke for en afdød filosof, men check alligevel).</li>
+<li><strong>Første 170 tegn af beskrivelsen</strong>: A/B test disse, de driver konvertering mere end screenshots for nye apps.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

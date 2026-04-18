@@ -1,0 +1,17 @@
+{
+  "name": "wisestep-hub",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Privat samarbejds-hub for Wisestep-projektet — markdown→HTML build + Supabase-backend.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && python3 -m http.server 8000 --directory docs",
+    "seed": "node scripts/seed-decisions.mjs"
+  },
+  "dependencies": {
+    "marked": "^12.0.0",
+    "gray-matter": "^4.0.3",
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}

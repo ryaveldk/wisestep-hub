@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Manuskripter — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="manuskripter/index">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li class="active"><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Manuskripter</span><span class="crumb-sep">›</span><span aria-current="page">Manuskripter</span></nav>
+      <article class="prose">
+<h1>Manuskripter</h1>
+<p>Her samler vi tour-manuskripter i takt med at de skrives. Hver tour får sin egen markdown-fil under <code>/content/manuskripter/</code> og bliver bygget til en underside ved næste <code>npm run build</code>.</p>
+<h2 id="status" class="section-heading" data-section-id="status">
+      <span class="heading-text">Status</span>
+      <button class="comment-anchor" data-section-id="status" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Kierkegaards København</strong> — ikke påbegyndt. Venter på at manuskript-længde per stop og dramaturgisk struktur er afklaret (se <a href="../faser/03-indhold.html">Fase 3</a>).</li>
+</ul>
+<h2 id="format-udkast" class="section-heading" data-section-id="format-udkast">
+      <span class="heading-text">Format (udkast)</span>
+      <button class="comment-anchor" data-section-id="format-udkast" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvert manuskript følger denne struktur:</p>
+<ol>
+<li><strong>Stop-nummer + lokation</strong> (koordinater + landmark)</li>
+<li><strong>Intro-kue</strong> (hvornår geofence udløses, overgang fra forrige stop)</li>
+<li><strong>Hovedspor</strong> (dramatiseret fortælling, 3–5 min)</li>
+<li><strong>Kilde-note</strong> (hvilke værker/breve, til credits)</li>
+<li><strong>Outro-kue</strong> (rutehint til næste stop)</li>
+</ol>
+<p>Manuskripter skrives på dansk først. Engelsk version kommer når vi har valgt en oversættelses-pipeline.</p>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+*.log
+npm-debug.log*
+.vscode/
+.idea/
+
+# Service-role key må ALDRIG committes.
+service-role.key
+supabase-service.key

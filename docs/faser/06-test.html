@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 6 — Test — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/06-test">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li class="active"><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 6 — Test</span></nav>
+      <article class="prose">
+<h1>Fase 6 — Test</h1>
+<p>Test-fasen handler mindre om &quot;finder vi bugs?&quot; og mere om &quot;virker oplevelsen når ingen af os er i rummet?&quot;. Det er nemt at teste i simulator. Det er hårdt at simulere en bruger der går Nørrebrogade i regn med AirPods og dårligt signal. Test skal ske i virkeligheden.</p>
+<h2 id="internal-alpha" class="section-heading" data-section-id="internal-alpha">
+      <span class="heading-text">Internal alpha <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="internal-alpha" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Før vi involverer eksterne testere:</p>
+<ul>
+<li><strong>Ryan går turen fuldt</strong> — flere gange, forskellige dage, forskelligt vejr</li>
+<li><strong>Partner går turen fuldt</strong> — med frisk perspektiv, uden intern viden om koden</li>
+<li><strong>Test-matrix</strong> per stop: geofence udløser? Lyd starter korrekt? Fallback hvis man går uden for zonen? Genoptagelse efter opkald?</li>
+<li><strong>Energi-test</strong> med Instruments: hvor mange % batteri bruger 45 min tour? Mål: under 15%.</li>
+</ul>
+<p>Dokumenter hver bug i en delt liste (kan være en Notion-side eller bare en markdown-fil her).</p>
+<h2 id="testflight-closed-beta" class="section-heading" data-section-id="testflight-closed-beta">
+      <span class="heading-text">TestFlight closed beta <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="testflight-closed-beta" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Efter internal alpha:</p>
+<ul>
+<li><strong>10–15 testere</strong>, udvalgt fra venner/familie/netværk</li>
+<li><strong>Blandet profil</strong>: iPhone-modeller (gamle 11, nye 15 Pro), iOS-versioner, aldersgrupper</li>
+<li><strong>Briefing</strong>: kort brief om at det er beta, link til feedback-form (Google Forms eller Tally), åben for spørgsmål</li>
+<li><strong>2 ugers varighed</strong></li>
+<li><strong>Check-in</strong>: dag 3 og dag 10</li>
+</ul>
+<p>Spørgsmål til testerne:</p>
+<ol>
+<li>Blev der nogensinde stilhed der føltes som en fejl?</li>
+<li>Udløste lyden på det rigtige sted hver gang?</li>
+<li>Gik du hele turen? Hvor stoppede du?</li>
+<li>Batteri ved endt tour?</li>
+<li>Ville du anbefale den til en ven?</li>
+</ol>
+<h2 id="testflight-public-beta" class="section-heading" data-section-id="testflight-public-beta">
+      <span class="heading-text">TestFlight public beta <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="testflight-public-beta" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Efter closed beta:</p>
+<ul>
+<li><strong>Public link</strong> delt via Reddit (r/copenhagen, r/philosophy), Facebook-grupper, twitter</li>
+<li><strong>50–200 testere</strong></li>
+<li><strong>4 ugers varighed</strong></li>
+<li><strong>Lette feedback-kanaler</strong> (emoji-rating + free-text)</li>
+<li><strong>Overvåg crash-logs</strong> via Xcode Organizer</li>
+</ul>
+<p>Dette er også vores første reelle user-research. Noter hvad folk skriver i reviews (selvom TestFlight-reviews ikke er offentlige).</p>
+<h2 id="battery-impact" class="section-heading" data-section-id="battery-impact">
+      <span class="heading-text">Battery impact <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="battery-impact" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Mål og sæt en målrettet grænse:</p>
+<ul>
+<li><strong>&lt; 15% batteri-forbrug</strong> for komplet 45 min tour på iPhone 12+</li>
+<li><strong>&lt; 20%</strong> på iPhone 11 / SE 2020</li>
+</ul>
+<p>Ovenover det er vi i problemer. Folk kan ikke lide at deres telefon er næsten død efter en tur. Måles med Xcode Energy Log + Instruments.</p>
+<p>Hvis vi ligger for højt: reducer kontinuerlige location-opdateringer, sænk lyd-buffer-størrelse, overvej audio-codec der kræver mindre CPU (Opus vs AAC trade-off).</p>
+<h2 id="edge-cases" class="section-heading" data-section-id="edge-cases">
+      <span class="heading-text">Edge cases <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="edge-cases" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Check-list der skal være OK før launch:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Flight mode midt i tour — lyd fortsætter, ingen crash</li>
+<li><input disabled="" type="checkbox"> Opkald under tour — pause + resume automatisk</li>
+<li><input disabled="" type="checkbox"> Bluetooth-disconnect — pause</li>
+<li><input disabled="" type="checkbox"> Skifte fra AirPods til iPhone-højtaler — fortsætter</li>
+<li><input disabled="" type="checkbox"> Låse skærm midt i stop — lyden fortsætter</li>
+<li><input disabled="" type="checkbox"> Tilbage fra baggrund efter 2 timer — genoptag eller reset?</li>
+<li><input disabled="" type="checkbox"> Tur gennemført — hvad sker der i UI? Tak-skærm? Review-prompt (smartly timed)?</li>
+<li><input disabled="" type="checkbox"> Køb, afbrudt download, åben app igen — resume download</li>
+<li><input disabled="" type="checkbox"> Forskellige iOS-sprog (engelsk system, dansk app)</li>
+<li><input disabled="" type="checkbox"> VoiceOver — navigation er mulig</li>
+<li><input disabled="" type="checkbox"> Dynamic Type (stor tekst) — UI bryder ikke</li>
+<li><input disabled="" type="checkbox"> Dark mode — alle skærme har korrekte farver</li>
+</ul>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Simulator tester ikke geofencing</strong> realistisk. Man kan fake location, men CLCircularRegion-adfærden er anderledes på device.</li>
+<li><strong>TestFlight-testere aktiverer sjældent &quot;Always&quot; location</strong>. Før dialog, vis en pre-permission screen der forklarer hvorfor. Ellers får du &quot;virker ikke&quot;-feedback der bare er permission-problemer.</li>
+<li><strong>iOS &quot;Always&quot; giver først reel always efter</strong> en række &quot;WhileUsing&quot;-brug. Apple normaliserer det over tid. Verificér adfærd med <code>CLLocationManager.authorizationStatus</code>.</li>
+<li><strong>Battery-measuring</strong>: gør det på en opladet, ikke-plugged-in iPhone, helst udenfor (ingen Wi-Fi, reell 4G). Simulator og plugged-in device giver falske tal.</li>
+<li><strong>TestFlight builds udløber efter 90 dage</strong>. Husk at uploade ny build jævnligt i lange beta-forløb.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 2 — Jura — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/02-jura">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li class="active"><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 2 — Jura</span></nav>
+      <article class="prose">
+<h1>Fase 2 — Jura</h1>
+<p>Denne fase er der hvor vi er mest eksponerede — AI-genererede stemmer af historiske personer, ASR-pipeline i cloud, forbrugerkøb, EU AI Act, GDPR. Hver beslutning her er blokerende fordi en fejltagelse kan betyde fjernelse fra App Store eller en erstatningssag. Det er ikke den fase man skimmer.</p>
+<h2 id="ai-stemmerettigheder" class="section-heading" data-section-id="ai-stemmerettigheder">
+      <span class="heading-text">AI-stemmerettigheder <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="ai-stemmerettigheder" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Vi skal vælge en AI-stemmeleverandør (ElevenLabs, Play.ht, Resemble, Microsoft custom voice, Azure TTS, etc.) hvor kommerciel licens <em>eksplicit</em> tillader:</p>
+<ol>
+<li><strong>Salg af det genererede lyd-output</strong> (ikke kun intern brug)</li>
+<li><strong>Dramatisering af historiske, offentligt kendte personer</strong> (mange leverandører forbyder at &quot;efterligne navngivne personer&quot; uanset om de er nulevende eller afdøde)</li>
+<li><strong>Embedded audio i app-distribution</strong> (ingen streaming-begrænsning)</li>
+</ol>
+<p>Leverandør-valg påvirker også stemme-kvalitet, prosodi og hvor meget dansk de håndterer godt. Mange AI-stemmer er trænet primært på engelsk — dansk risikerer at lyde mekanisk, og de trykker trykket forkert i ord som &quot;Kierkegaard&quot; eller &quot;Assistens&quot;.</p>
+<h2 id="kierkegaards-stemme-og-eftermaele" class="section-heading" data-section-id="kierkegaards-stemme-og-eftermaele">
+      <span class="heading-text">Kierkegaards stemme og eftermæle <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="kierkegaards-stemme-og-eftermaele" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Kierkegaard døde 1855, så ophavsretten til hans <em>værker</em> er udløbet. Men eftermæle-retten er anderledes:</p>
+<ul>
+<li><strong>Rigsbiblioteket / Søren Kierkegaard Forskningscentret</strong> har udgivet den store tekstkritiske udgave <em>Søren Kierkegaards Skrifter</em> (SKS), og den udgave har sin egen redaktionelle ophavsret. Vi bør citere fra originalværkerne, ikke fra SKS, for at undgå det.</li>
+<li><strong>Biografisk materiale</strong> (breve, dagbøger) i offentlige arkiver er typisk frit tilgængeligt, men reproduktions-ret kan være begrænset af arkivet.</li>
+<li><strong>Stemmeefterligning af en historisk person</strong> er juridisk uafklaret i EU. Retspraksis findes ikke endnu. Defensivt: tydelig disclaimer &quot;AI-dramatisering, ikke autentisk optagelse&quot;, både i app og i App Store-beskrivelse.</li>
+</ul>
+<p>Anbefaling: tal med en IP-advokat. Én konsultation (2.000–4.000 kr) kan afklare de fleste spørgsmål.</p>
+<h2 id="gdpr-og-persondata" class="section-heading" data-section-id="gdpr-og-persondata">
+      <span class="heading-text">GDPR og persondata <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="gdpr-og-persondata" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvilke persondata samler vi?</p>
+<ul>
+<li><strong>Anonymt analytics</strong> (TelemetryDeck har ingen GDPR-implikation, Firebase har)</li>
+<li><strong>Lokation under tour</strong> (geofencing kræver tilladelse, men vi gemmer ikke rutedata)</li>
+<li><strong>Køb/receipts</strong> (Apple håndterer, vi ser kun receipt-ID)</li>
+<li><strong>Crash-logs</strong> (Apple-native er anonyme, tredjeparts kan være ikke-anonyme)</li>
+<li><strong>E-mail ved support-kontakt</strong> (behandles som enhver anden kundedata)</li>
+</ul>
+<p>Vi skal skrive en <strong>privatlivspolitik</strong> der er forståelig, ikke kun juridisk korrekt. Apple kræver link i App Store-metadata.</p>
+<h2 id="forbrugerret-og-fortrydelsesret" class="section-heading" data-section-id="forbrugerret-og-fortrydelsesret">
+      <span class="heading-text">Forbrugerret og fortrydelsesret <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="forbrugerret-og-fortrydelsesret" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>EU&#39;s forbrugerrettighedsdirektiv: digitale køb har <strong>14 dages fortrydelsesret</strong>, <em>medmindre</em> brugeren eksplicit accepterer at frafalde retten ved øjeblikkelig levering. Apple&#39;s StoreKit håndterer dette, men vi skal beslutte:</p>
+<ul>
+<li><strong>Fortrydelsesret frafaldet</strong>: brugeren får øjeblikkelig adgang mod accept. Mere aggressiv, mere intuitiv.</li>
+<li><strong>Fortrydelsesret bevaret</strong>: brugeren har 14 dage, men så kan de få refusion selv efter at have gået hele turen.</li>
+</ul>
+<p>Anbefaling: frafaldt fortrydelsesret ved køb, med tydelig accept-checkbox. Kombiner med vores egen refusions-politik (se nedenfor).</p>
+<h2 id="ai-indholdsdeklaration-eu-ai-act" class="section-heading" data-section-id="ai-indholdsdeklaration-eu-ai-act">
+      <span class="heading-text">AI-indholdsdeklaration (EU AI Act) <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="ai-indholdsdeklaration-eu-ai-act" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p><strong>EU AI Act</strong> (i kraft fra 2024, med gradvis indfasning til 2026) kræver at AI-genereret indhold er tydeligt markeret som sådan. For vores app betyder det:</p>
+<ul>
+<li><strong>App Store beskrivelse</strong>: &quot;Alle stemmer er AI-syntetiserede&quot;</li>
+<li><strong>Onboarding</strong>: tydelig skærm der forklarer at det ikke er autentiske optagelser</li>
+<li><strong>In-app</strong>: lille &quot;AI&quot;-badge eller tilsvarende persistent indikator</li>
+</ul>
+<p>Manglende compliance kan give bøde på op til 3% af global omsætning. For os som mikrovirksomhed: ikke en reel trussel endnu, men Apple vil sandsynligvis kræve det i review-processen længe før EU håndhæver mod os direkte.</p>
+<h2 id="refusionspolitik" class="section-heading" data-section-id="refusionspolitik">
+      <span class="heading-text">Refusionspolitik <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="refusionspolitik" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Apple håndterer refusioner via deres egen proces, men vi bør have en klar holdning:</p>
+<ul>
+<li><strong>Teknisk fejl</strong> (app crasher, lyd afspiller ikke, geofence fejler): refusion altid, også efter 14 dage.</li>
+<li><strong>Indholds-utilfredshed</strong> (brugeren synes ikke den var god nok): ingen standard-refusion, men håndter case-by-case.</li>
+<li><strong>Geografisk umulighed</strong> (brugeren opdager at de ikke kan komme til København): refusion inden for 14 dage.</li>
+</ul>
+<p>Skriv det i FAQ-en så det er tydeligt før købet.</p>
+<h2 id="terms-of-service" class="section-heading" data-section-id="terms-of-service">
+      <span class="heading-text">Terms of Service <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="terms-of-service" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Standard-ToS der dækker brug, ansvar, gyldighed, lovvalg (dansk ret, København som værneting). Kan laves med Termly eller Iubenda i første omgang, overvej advokat-gennemgang før launch.</p>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>AI-stemmerettigheder</strong> er det punkt der mest sandsynligt bider os hvis det går galt. Gem kopi af licens-tekst fra den dag vi køber. Hvis leverandøren ændrer vilkår senere, er det vores gamle licens der gælder.</li>
+<li><strong>Kierkegaard-efterligning</strong>: hvis nogen klager, er det vores formulering af disclaimeren der bliver afgørende. Lad en jurist godkende præcise formuleringer.</li>
+<li><strong>EU AI Act-compliance</strong>: Apple vil formentlig indføre automatiserede tjek. Hvis vi ikke er synligt AI-markeret, risikerer vi afvisning i review.</li>
+<li><strong>GDPR</strong>: hvis vi bruger Firebase Analytics uden eksplicit samtykke, er vi i overtrædelse. Brug TelemetryDeck eller PostHog med opt-out som default.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

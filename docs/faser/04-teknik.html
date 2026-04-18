@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 4 — Teknik — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/04-teknik">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li class="active"><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 4 — Teknik</span></nav>
+      <article class="prose">
+<h1>Fase 4 — Teknik</h1>
+<p>Den tekniske fase. Her oversætter vi produktdefinitionen til konkrete iOS-arkitekturvalg. Vi holder stakken lille og native — SwiftUI, CoreLocation, AVFoundation, StoreKit 2 — og undgår at bygge backend før vi faktisk har brug for det.</p>
+<h2 id="geofencing-strategi" class="section-heading" data-section-id="geofencing-strategi">
+      <span class="heading-text">Geofencing-strategi <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="geofencing-strategi" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>To modeller for hvordan vi udløser lyd-cues ved stop:</p>
+<ul>
+<li><strong><code>CLCircularRegion</code></strong> (region monitoring): batteri-venligt, system-håndteret, max 20 regioner samtidig per app. Perfekt til 6 stop per tour.</li>
+<li><strong><code>CLLocationManager</code> continuous updates</strong>: mere præcis, men drænende, kræver at app&#39;en er aktiv.</li>
+</ul>
+<p><strong>Anbefaling: hybrid.</strong> Region monitoring som primær udløser, suppleret med korte kontinuerlige opdateringer (10–20 sek) ved ankomst til et stop for præcis fine-tuning af &quot;hvornår lyden starter&quot;. Det sparer batteri men giver præcision i det afgørende øjeblik.</p>
+<p>Radius per geofence: 30–50 m. For stort → lyden starter for tidligt. For lille → brugeren risikerer at missche triggeren.</p>
+<h2 id="indholdslevering" class="section-heading" data-section-id="indholdslevering">
+      <span class="heading-text">Indholdslevering <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="indholdslevering" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Hvordan kommer lydfilerne i hænderne på brugeren?</p>
+<ul>
+<li><strong>Bundlet i app</strong>: enkelt, men ethvert tour-update kræver ny app-version. Ved 6 ture á 150 MB = 900 MB app. Absurdt.</li>
+<li><strong>On-demand download efter køb</strong>: lille app, brugeren henter kun det de har købt. Kræver at vi hoster lydfilerne (CDN).</li>
+</ul>
+<p><strong>Anbefaling: on-demand download via CDN.</strong> Cloudflare R2 er billigst (gratis egress). Bunny.net har god performance i Europa. Filerne er statiske — ingen backend nødvendig ud over CDN.</p>
+<p>Download-flow: efter køb, app viser &quot;Henter tur (75 MB)&quot; med progress-bar. Lokalt cache i app&#39;s Documents-mappe. Retry-logik ved afbrudt download.</p>
+<h2 id="lydmotor" class="section-heading" data-section-id="lydmotor">
+      <span class="heading-text">Lydmotor <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="lydmotor" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p><strong><code>AVAudioEngine</code></strong> eller <strong><code>AVAudioPlayer</code></strong>?</p>
+<ul>
+<li><strong>AVAudioPlayer</strong>: simpel, kan afspille én fil ad gangen. Fint hvis vi lægger hver stop-lyd som én fil.</li>
+<li><strong>AVAudioEngine</strong>: mixer-arkitektur, kan lagre voice + ambient + musik adskilt og krydsfade. Mere kompleks.</li>
+</ul>
+<p><strong>Anbefaling: AVAudioPlayer for MVP.</strong> Lyddesigneren bager alle lagene ind i én fil per stop. Vi mister dynamisk lyd-kontrol, men tjener i enkelhed. Hvis vi senere vil have fx dynamisk ambient baseret på brugerens tempo, opgrader vi.</p>
+<p>Husk <code>.playback</code> audio-session category, så lyden fortsætter når skærmen slukker eller brugeren er i Apple Maps.</p>
+<h2 id="analytics" class="section-heading" data-section-id="analytics">
+      <span class="heading-text">Analytics <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="analytics" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Vi har brug for at vide: hvor mange starter turen, hvor mange når stop 1, 2, 3…, hvor mange færdiggør, hvor lang tid tager det, hvor falder de fra?</p>
+<ul>
+<li><strong>TelemetryDeck</strong>: Swift-native, GDPR-compliant by default (anonym), billigt. Anbefaling.</li>
+<li><strong>Firebase Analytics</strong>: gratis, men GDPR-kompliceret og tracking-panelt fra Apple giver det dårligere rating i App Store privacy labels.</li>
+<li><strong>PostHog / Mixpanel</strong>: kraftige, men overkill for vores skala.</li>
+</ul>
+<p><strong>Anbefaling: TelemetryDeck.</strong> Simpel integration, privat, og den koster $12/måned når vi passerer gratis-tier.</p>
+<h2 id="backend-behov" class="section-heading" data-section-id="backend-behov">
+      <span class="heading-text">Backend-behov <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="backend-behov" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Minimalt. Hvad har vi brug for?</p>
+<ul>
+<li><strong>Ingen user-accounts</strong> (Apple ID håndterer køb, vi har ikke egne konti)</li>
+<li><strong>Ingen server-side logik</strong> ved launch</li>
+<li><strong>CDN</strong> til lydfiler (se ovenfor)</li>
+<li><strong>Analytics</strong> via tredjepart (TelemetryDeck)</li>
+<li><strong>Receipt-validation</strong> kan ske lokalt med StoreKit 2 (ingen server-validering ved launch, kan tilføjes senere ved svindel-problemer)</li>
+</ul>
+<p>Ved v1.1 (gruppelytning) får vi brug for en synk-backend — det er på det tidspunkt vi overvejer Supabase (passende, vi bruger den allerede i denne hub) eller en simpel WebSocket-løsning.</p>
+<h2 id="storekit-2" class="section-heading" data-section-id="storekit-2">
+      <span class="heading-text">StoreKit 2 <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="storekit-2" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Moderne StoreKit 2 API&#39;et er markant bedre end den gamle:</p>
+<ul>
+<li><strong>Type-safe</strong> Swift API</li>
+<li><strong><code>Transaction.currentEntitlements</code></strong> til at tjekke ejerskab</li>
+<li><strong>JWS-signerede receipts</strong> der kan valideres uden Apple-server-kald</li>
+<li><strong>Udtrækbart auto-renewal-state</strong> (relevant hvis vi senere overvejer abonnement)</li>
+</ul>
+<p>Vi bruger <strong>non-consumable in-app purchases</strong> (en turpakke ejes for altid efter køb). Restore-purchases skal implementeres (Apple kræver det).</p>
+<h2 id="battery-optimization" class="section-heading" data-section-id="battery-optimization">
+      <span class="heading-text">Battery optimization <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="battery-optimization" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Løbende disciplin. Tommelfingerregler:</p>
+<ul>
+<li><strong>Brug region monitoring frem for continuous updates</strong> (dækket ovenfor)</li>
+<li><strong><code>kCLLocationAccuracyHundredMeters</code></strong> er nok uden for stop-zoner</li>
+<li><strong>Stop audio-session når tur er done</strong> — ellers fortsætter <code>.playback</code>-mode at holde iPhone vågen</li>
+<li><strong>Sluk screen-wake-lock</strong> når lyd spiller men skærm ikke bruges</li>
+</ul>
+<p>Mål med Instruments → Energy log. Mål før og efter hver major release.</p>
+<h2 id="edge-cases" class="section-heading" data-section-id="edge-cases">
+      <span class="heading-text">Edge cases <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="edge-cases" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Løbende liste:</p>
+<ul>
+<li>Hvad sker der hvis iPhone dør midt i tour? Genoptagelse fra seneste stop.</li>
+<li>Hvad hvis brugeren får et opkald midt i en scene? Pause + resume via AVAudioSession interruption notifications.</li>
+<li>Hvad med Bluetooth-hovedtelefoner der kobler ud? Standard-adfærd: pause.</li>
+<li>Flight mode? Vi er offline, det er OK.</li>
+<li>Screen rotation? Låser portrait kun.</li>
+<li>Accessibility: VoiceOver må ikke overlappe lyden. Test med VoiceOver til.</li>
+<li>Skærm-off: lyden skal fortsætte. Lock-screen kontroller (MPRemoteCommandCenter) skal være konfigurerede.</li>
+</ul>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Geofencing kræver &quot;Always&quot; location permission</strong> hvis den skal virke med app i baggrunden. Det er et kontroversielt permission request — Apple vil spørge om hvorfor. Skriv præcise permission strings.</li>
+<li><strong>AVAudioPlayer og baggrundsafspilning</strong>: glem ikke at aktivere <code>.playback</code> session category, ellers stopper lyden når skærmen låser.</li>
+<li><strong>StoreKit 2 kræver iOS 15+</strong>. Hvis vi vil understøtte ældre, skal vi bruge den gamle StoreKit. iOS 15+ er OK for vores målgruppe.</li>
+<li><strong>CDN cache-invalidation</strong>: hvis vi opdaterer en lydfil, skal brugerens lokale cache også opdateres. Brug versionerede filnavne (<code>stop-1-v2.m4a</code>).</li>
+<li><strong>TelemetryDeck kan ikke spore individuelle brugere</strong> — det er et feature, ikke en bug. Byg analytics-spørgsmål ud fra aggregater.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>

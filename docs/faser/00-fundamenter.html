@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Fase 0 — Strategiske fundamenter — Wisestep Hub</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body data-page-slug="faser/00-fundamenter">
+  <div id="app" class="app-shell" hidden>
+    <header class="topbar">
+      <button class="menu-toggle" aria-label="Menu" aria-controls="sidebar">☰</button>
+      <a class="brand" href="../index.html"><span class="brand-mark"></span><span class="brand-text">Wisestep Hub</span></a>
+      <div class="auth-slot" id="auth-slot"></div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Sektioner">
+      <nav><ul class="nav-root"><li><a href="../index.html">Forside</a></li><li class="nav-group"><span class="nav-group-label">Faser</span><ul><li class="active"><a href="../faser/00-fundamenter.html">0 — Fundamenter</a></li><li><a href="../faser/01-produktdefinition.html">1 — Produktdefinition</a></li><li><a href="../faser/02-jura.html">2 — Jura</a></li><li><a href="../faser/03-indhold.html">3 — Indhold</a></li><li><a href="../faser/04-teknik.html">4 — Teknik</a></li><li><a href="../faser/05-appstore.html">5 — App Store</a></li><li><a href="../faser/06-test.html">6 — Test</a></li><li><a href="../faser/07-lancering.html">7 — Lancering</a></li><li><a href="../faser/08-postlaunch.html">8 — Post-launch</a></li></ul></li><li><a href="../beslutninger.html">Beslutninger</a></li><li><a href="../manuskripter/index.html">Manuskripter</a></li></ul></nav>
+    </aside>
+
+    <main class="content-shell">
+      <nav class="breadcrumbs" aria-label="Sti"><a href="../index.html">Wisestep Hub</a><span class="crumb-sep">›</span><span>Faser</span><span class="crumb-sep">›</span><span aria-current="page">Fase 0 — Strategiske fundamenter</span></nav>
+      <article class="prose">
+<h1>Fase 0 — Strategiske fundamenter</h1>
+<p>Før vi skriver en linje kode eller optager en lydfil, skal vi have det juridiske og forretningsmæssige skelet på plads. Det er ikke den sjove del, men beslutningerne her har ringvirkninger helt ud til produktnavnet, prissætningen og hvem der underskriver hvad. Alle syv beslutninger i denne fase er blokerende — ingen af dem kan vente til efter lancering.</p>
+<h2 id="virksomhedsstruktur" class="section-heading" data-section-id="virksomhedsstruktur">
+      <span class="heading-text">Virksomhedsstruktur <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="virksomhedsstruktur" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>ApS eller enkeltmandsvirksomhed? Valget påvirker tre ting: beskatning, ansvarsbegrænsning og fradragsmuligheder. Et ApS koster 40.000 kr i startkapital og medfører administration, men beskytter privatøkonomien hvis noget går galt — fx hvis Kierkegaard-arvingen vrider sig eller en Apple-review afslører en utilsigtet overtrædelse af tredjepartsrettigheder. En enkeltmandsvirksomhed er gratis at oprette og fleksibel, men personligt hæftende.</p>
+<p>Anbefaling: få en revisor til at regne skattemæssigt break-even baseret på vores forventede omsætning det første år, og beslut derefter. Der er en aftale hvor man starter som enkeltmand og konverterer til ApS ved break-even, men konverteringen koster tid.</p>
+<h2 id="apple-developer-enrollment" class="section-heading" data-section-id="apple-developer-enrollment">
+      <span class="heading-text">Apple Developer enrollment <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="apple-developer-enrollment" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Dette er den praktiske flaskehals: ingen enheds-test, ingen TestFlight, ingen App Store uden en aktiv konto. Enrollment tager typisk 1–2 uger, men kan strække sig til flere uger ved DUNS-nummer-forvikling hvis vi enroller som virksomhed.</p>
+<p>To spor:</p>
+<ul>
+<li><strong>Personlig enrollment</strong> ($99/år). Hurtigt. Men apps står i den personlige profil og kan ikke overføres senere uden papirarbejde.</li>
+<li><strong>Virksomheds-enrollment</strong> (ApS eller enkeltmand med CVR) ($99/år). Kræver DUNS-nummer. Tager længere. Men det er sådan vi vil have det lange løb.</li>
+</ul>
+<p>Anbefaling: hvis vi lander på ApS → enroll som virksomhed fra start. Hvis enkeltmand → enroll som individuel og konverter senere.</p>
+<h2 id="brand-og-navn" class="section-heading" data-section-id="brand-og-navn">
+      <span class="heading-text">Brand og navn <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="brand-og-navn" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>App-navnet skal ikke være &quot;Kierkegaards København&quot;. Det låser os til én tur, og paraply-brand-strategien (hvor flere ture ligger under samme app eller under samme brand-familie af apps) kræver et navn der kan rumme flere filosoffer, byer eller genrer.</p>
+<p>Kandidater i spil: <em>Wisestep</em>, <em>Philopath</em>, <em>Ruminate</em>, <em>Vandring</em>. Vi skal tjekke:</p>
+<ul>
+<li><strong>.com</strong> og <strong>.dk</strong> domæne-tilgængelighed</li>
+<li><strong>Varemærke</strong> i EU (euipo.europa.eu) og DK (dkpto.dk)</li>
+<li><strong>App Store search-ranking</strong> for lignende navne</li>
+<li><strong>Social handles</strong> (Instagram, TikTok, YouTube)</li>
+</ul>
+<h2 id="visuel-identitet" class="section-heading" data-section-id="visuel-identitet">
+      <span class="heading-text">Visuel identitet <span class="marker marker-ongoing" title="Løbende">🔄</span></span>
+      <button class="comment-anchor" data-section-id="visuel-identitet" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Logo, farvepalette, typografi, tone-of-voice. Det er løbende — første version skal være funktionel nok til App Store og marketing-materiale, men behøver ikke være endelig ved launch. Anbefaling: book én designer til en 2-ugers sprint der leverer logo + palette + to typografier + et enkelt brand-guidelines-dokument. Alt andet kan iterere.</p>
+<h2 id="forretningsmodel-skelet" class="section-heading" data-section-id="forretningsmodel-skelet">
+      <span class="heading-text">Forretningsmodel-skelet <span class="marker marker-blocking" title="Blokerende">🔒</span></span>
+      <button class="comment-anchor" data-section-id="forretningsmodel-skelet" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<p>Vi har fire kandidater:</p>
+<ol>
+<li><strong>Engangskøb per tour</strong> (fx 49 kr). Fair, forudsigelig, simpel refusions-logik.</li>
+<li><strong>Abonnement</strong> (fx 39 kr/måned, alle ture). Kræver nok ture til at føles værdifuldt — ikke realistisk ved launch.</li>
+<li><strong>Freemium</strong> (første stop gratis, rest låses op). Introducerer demo-problem: hvad hvis første stop ikke sælger?</li>
+<li><strong>Bundle</strong> (flere ture samlet).</li>
+</ol>
+<p><strong>Anbefaling: engangskøb per tour.</strong> Det matcher bogens mentale model (du betaler for et værk, det er dit). Det gør refusions-politikken simpel. Det undgår det dobbelte arbejde med abonnement-infrastruktur. Når vi har 3–4 ture, kan vi tilføje et bundle uden at rive MVP-modellen op.</p>
+<h2 id="advarsler-amp-gotchas" class="section-heading" data-section-id="advarsler-amp-gotchas">
+      <span class="heading-text">Advarsler &amp; gotchas</span>
+      <button class="comment-anchor" data-section-id="advarsler-amp-gotchas" aria-label="Vis kommentarer">💬</button>
+    </h2>
+<ul>
+<li><strong>Apple Developer</strong> kan afvise enrollment hvis DUNS-nummeret ikke matcher nøjagtigt CVR-registreringen. Dobbelttjek stave-måde.</li>
+<li><strong>Varemærke</strong> skal tjekkes <em>før</em> vi bruger penge på logo. Et varemærke-afslag midt i design-forløbet koster både penge og tid.</li>
+<li><strong>Engangskøb</strong> kræver at vi afstår fra &quot;recurring revenue&quot; — men det matcher produktet og vores energi bedre end abonnement.</li>
+<li><strong>Personlig vs virksomhed</strong>-apps kan overføres mellem Apple-konti, men det er en manuel proces med papirarbejde. Undgå hvis muligt.</li>
+</ul>
+
+      </article>
+      <aside class="comments-rail" id="comments-rail" aria-label="Kommentarer"></aside>
+    </main>
+
+    <div class="comments-drawer" id="comments-drawer" hidden></div>
+  </div>
+
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>Wisestep Hub</h1>
+      <p>Privat arbejdsrum. Log ind for at fortsætte.</p>
+      <button id="login-google" class="btn btn-primary">Log ind med Google</button>
+      <p class="login-hint">Kun whitelistede e-mails har adgang.</p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/app.js"></script>
+</body>
+</html>
