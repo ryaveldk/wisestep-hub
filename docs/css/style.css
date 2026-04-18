@@ -649,6 +649,8 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
   z-index: 100;
   padding: 20px;
 }
+/* Respektér native [hidden] — ellers vinder .login-gate's display:flex. */
+.login-gate[hidden], .app-shell[hidden] { display: none !important; }
 .login-card {
   max-width: 420px;
   width: 100%;
