@@ -80,21 +80,23 @@ function escapeHtml(s) {
 }
 
 export async function initAuth() {
-  // Login-knap
   document.getElementById('login-google')?.addEventListener('click', loginWithGoogle);
 
-  // Første session-hent
-  const { data: { session } } = await supabase.auth.getSession();
-  currentUser = session?.user ?? null;
-  renderAuth();
-  renderGate();
-  emit();
-
-  // Abonnér på auth-state-ændringer
-  supabase.auth.onAuthStateChange((_evt, session) => {
+  // Abonnér FØRST, så vi ikke misser SIGNED_IN fra detectSessionInUrl.
+  supabase.auth.onAuthStateChange((evt, session) => {
+    console.log('[auth] state change:', evt, session?.user?.email);
     currentUser = session?.user ?? null;
     renderAuth();
     renderGate();
     emit();
   });
+
+  // Første session-hent (evt. allerede sat af detectSessionInUrl).
+  const { data: { session }, error } = await supabase.auth.getSession();
+  if (error) console.warn('[auth] getSession error', error);
+  console.log('[auth] init session:', session?.user?.email, 'url-hash:', window.location.hash ? 'yes' : 'no');
+  currentUser = session?.user ?? null;
+  renderAuth();
+  renderGate();
+  emit();
 }
