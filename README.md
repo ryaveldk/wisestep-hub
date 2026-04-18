@@ -30,7 +30,7 @@ npm run dev      # serverer docs/ på http://localhost:8000
 2. Kør `npm run build` — det genererer HTML i `/docs/`.
 3. Kør `npm run dev` for at tjekke lokalt.
 4. `git add content/ docs/ && git commit -m "..." && git push`.
-5. GitHub Actions deployer automatisk via Pages.
+5. GitHub Pages deployer automatisk fra `main/docs/` inden for 1-2 minutter.
 
 > **Husk**: `docs/` skal committes sammen med `content/`. Vi bruger ikke `gh-pages`-branch, vi server direkte fra `main/docs/`. Hvis du glemmer at køre build får live-siden ikke dine ændringer.
 
